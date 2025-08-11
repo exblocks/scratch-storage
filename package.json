@@ -1,19 +1,24 @@
 {
-  "name": "scratch-storage",
+  "name": "@yokobond/scratch-storage",
   "version": "4.0.210",
   "description": "Load and store project and asset files for Scratch 3.0",
   "license": "AGPL-3.0-only",
-  "homepage": "https://github.com/scratchfoundation/scratch-storage#readme",
+  "homepage": "https://github.com/exblocks/scratch-storage#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/scratchfoundation/scratch-storage.git",
-    "sha": "b4a75337a0403d0f369be127db6e5e113be99611"
+    "url": "https://github.com/exblocks/scratch-storage.git"
   },
   "main": "./dist/node/scratch-storage.js",
   "browser": "./dist/web/scratch-storage.js",
   "types": "./dist/types/index.d.ts",
+  "files": [
+    "dist/**",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "rimraf dist && webpack --mode=production",
+    "prepublishOnly": "npm run build",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "coverage": "tap ./test/{unit,integration}/*.js --coverage --coverage-report=lcov",
     "prepare": "husky install",
@@ -25,6 +30,9 @@
     "test:unit": "jest \"test[\\\\/]unit\"",
     "version": "json -f package.json -I -e \"this.repository.sha = '$(git log -n1 --pretty=format:%H)'\"",
     "watch": "webpack --watch"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "tap": {
     "check-coverage": false
