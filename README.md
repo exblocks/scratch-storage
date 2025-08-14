@@ -7,16 +7,28 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/LLK/scratch-storage.svg)](https://greenkeeper.io/)
 
 ## Installation
+
+### From GitHub Packages
+
+```bash
+# Configure npm to use GitHub Packages for @exblocks scope
+echo "@exblocks:registry=https://npm.pkg.github.com" >> .npmrc
+
+# Install the package
+npm install @exblocks/scratch-storage
+```
+
+### From source
 This requires you to have Node.js installed.
 
 In your own Node.js environment/application:
 ```bash
-npm install https://github.com/scratchfoundation/scratch-storage.git
+npm install https://github.com/exblocks/scratch-storage.git
 ```
 
 If you want to edit/play yourself (requires Git):
 ```bash
-git clone https://github.com/scratchfoundation/scratch-storage.git
+git clone https://github.com/exblocks/scratch-storage.git
 cd scratch-storage
 npm install
 ```

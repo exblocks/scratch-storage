@@ -1,0 +1,53 @@
+name: Publish to GitHub Packages
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@exblocks'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Configure package for GitHub Packages
+        run: |
+          # Backup original package.json
+          cp package.json package.json.backup
+          
+          # Update package.json for GitHub Packages
+          npm pkg set name="@exblocks/scratch-storage"
+          npm pkg set publishConfig.registry="https://npm.pkg.github.com"
+          npm pkg set repository.url="https://github.com/exblocks/scratch-storage.git"
+
+      - name: Publish to GitHub Packages
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Restore original package.json
+        run: mv package.json.backup package.json
