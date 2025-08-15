@@ -42,10 +42,11 @@ jobs:
           # Update package.json for GitHub Packages
           npm pkg set name="@exblocks/scratch-storage"
           npm pkg set publishConfig.registry="https://npm.pkg.github.com"
+          npm pkg set publishConfig.access="public"
           npm pkg set repository.url="https://github.com/exblocks/scratch-storage.git"
 
-      - name: Publish to GitHub Packages
-        run: npm publish
+      - name: Publish to GitHub Packages (Public)
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

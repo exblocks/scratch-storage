@@ -10,7 +10,8 @@
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
-    "@exblocks:registry": "https://npm.pkg.github.com"
+    "@exblocks:registry": "https://npm.pkg.github.com",
+    "access": "public"
   },
   "main": "./dist/node/scratch-storage.js",
   "browser": "./dist/web/scratch-storage.js",
