@@ -1,6 +1,6 @@
 {
   "name": "@exblocks/scratch-storage",
-  "version": "4.0.211",
+  "version": "4.0.213",
   "description": "Load and store project and asset files for Scratch 3.0",
   "license": "AGPL-3.0-only",
   "homepage": "https://github.com/exblocks/scratch-storage#readme",
